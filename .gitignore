@@ -1,0 +1,5 @@
+/env/
+/jupyter-config/
+/notebooks/.ipynb_checkpoints/
+/notebooks/models/
+/notebooks/text/

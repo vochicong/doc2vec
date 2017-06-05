@@ -1,0 +1,16 @@
+version: '2'
+services:
+  doc2vec:
+    image: vochicong/doc2vec
+    build: .
+    volumes:
+      - ./jupyter-config:/root/.jupyter
+      - ./notebooks:/workspace/notebooks
+    ports:
+      - "443:8888" # For Jupyter
+    working_dir: /workspace
+    command: 
+      - bash
+      - -c
+      - source .env/bin/activate && jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --notebook-dir /workspace/notebooks
+
