@@ -13,7 +13,8 @@ RUN apt-get update \
  && apt-get install -y apt-utils apt-transport-https \
       g++ google-perftools libboost-dev zlib1g-dev \
       python3-pip python3-venv \
-      vim wget \
+      vim wget git \
+      mecab libmecab-dev mecab-ipadic mecab-ipadic-utf8 \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
  
 RUN wget http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/$JUMANPP.tar.xz \
@@ -42,4 +43,12 @@ RUN python3 -m venv .env \
  && source .env/bin/activate \
  && pip3 install --upgrade pip \
  && pip3 install six simplegeneric jupyter gensim \
- && cd $PYKNP && python setup.py install
+ && cd $PYKNP && python setup.py install 
+
+RUN git clone https://github.com/facebookresearch/fastText.git &&\
+ make -C fastText
+RUN source .env/bin/activate &&\
+ pip3 install Cython &&\
+ pip3 install fasttext mecab-python3 &&\
+ echo Installed fastText
+ 
