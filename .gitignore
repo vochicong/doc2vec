@@ -1,6 +1,10 @@
-/env/
+/.env/
 /jupyter-config/
 /notebooks/.ipynb_checkpoints/
 /notebooks/models/
 /notebooks/corpora/
 /notebooks/data/
+ansible-playbook.retry
+tmp*
+tmp/
+/download/

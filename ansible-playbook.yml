@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  become: true
+  gather_facts: false
+  connection: local
+  roles:
+      - ansible-container
+      - apt-utils
+      # - dumb-init
+      - download
+      - doc2vec
+      - python3
+      - jupyter
+      - gensim
+      - mecab
+      - fasttext
+      - jumanpp
+      - juman
+      - knp
+      - pyknp
+      

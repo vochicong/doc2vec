@@ -1,0 +1,5 @@
+- name: apt install dumb-init
+  apt: deb=https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb
+  tags:
+    - apt
+    - dumb-init

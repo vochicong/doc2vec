@@ -1,0 +1,26 @@
+- name: apt install MeCab
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+    - mecab 
+    - libmecab-dev
+    - mecab-ipadic 
+    - mecab-ipadic-utf8
+  tags:
+    - apt
+    - download
+- name: Install MeCab
+  shell: |
+    unset PYTHONPATH &&
+    source /workspace/python3-venv/bin/activate &&
+    pip3 install mecab-python3
+  args:
+    executable: /bin/bash
+  tags:
+    - pip
+    - mecab
+- name: apt clean
+  shell: apt clean && rm -rf /var/lib/apt/lists/* 
+  when: ansible_connection == 'docker'
+  tags:
+    - clean
+    

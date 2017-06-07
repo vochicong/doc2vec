@@ -1,0 +1,8 @@
+from: ubuntu:16.04
+maintainer: kongvc@gmail.com
+working_dir: /workspace
+environment:
+  DEBIAN_FRONTEND: noninteractive
+shell:
+- /bin/bash
+- -c

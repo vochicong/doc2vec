@@ -1,0 +1,11 @@
+- name: Install JUMAN
+  shell: |
+    # Use curl and rm to save disk space and docker size
+    curl -SL http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/juman/juman-7.01.tar.bz2 | tar xvjC /workspace &&
+    cd /workspace/juman-7.01 &&
+    ./configure && 
+    make && 
+    make install &&
+    rm -rf /workspace/juman-7.01
+  tags:
+    - juman

@@ -1,0 +1,38 @@
+version: '2'
+settings:
+  conductor_base: ubuntu:16.04
+  project_name: nlp
+services:
+  doc2vec:
+    roles: # each role is commited as an image layer
+      - apt-utils
+      - dumb-init
+      - doc2vec
+      - python3
+      - jupyter
+      - gensim
+      - mecab
+      - fasttext
+      - jumanpp
+      - juman
+      - knp
+      - pyknp
+    # image: vochicong/nlp-doc2vec
+    volumes:
+      - $PWD/jupyter-config:/root/.jupyter
+      - $PWD/notebooks:/workspace/notebooks
+    ports:
+      - "443:8888" # For Jupyter
+    working_dir: /workspace
+    # entrypoint: ["/usr/bin/dumb-init", "--"]
+    entrypoint: 
+      - /bin/bash
+      - -c
+      - source /workspace/python3-venv/bin/activate && exec jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
+    # --notebook-dir /workspace/notebooks
+registries:
+  docker:
+    url: https://docker.io/
+    namespace: vochicong
+    repository_prefix: nlp
+    

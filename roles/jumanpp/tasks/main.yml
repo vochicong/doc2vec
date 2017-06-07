@@ -1,0 +1,13 @@
+- name: Install JUMANPP
+  shell: |
+    # Use curl and rm to save disk space and docker size
+    curl -SL http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.02.tar.xz | tar xJvC /workspace &&
+    cd /workspace/jumanpp-1.02 &&
+    ./configure &&
+    make &&
+    make install &&
+    rm -rf /workspace/jumanpp-1.02
+  args:
+    executable: /bin/bash
+  tags:
+    - jumanpp

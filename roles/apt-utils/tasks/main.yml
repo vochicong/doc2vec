@@ -1,0 +1,11 @@
+- name: apt install apt utils
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+    - apt-utils
+    - apt-transport-https
+  tags:
+    - apt
+    - download
+- name: apt clean
+  shell: apt clean && rm -rf /var/lib/apt/lists/* 
+  when: ansible_connection == 'docker'

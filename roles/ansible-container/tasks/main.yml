@@ -1,0 +1,26 @@
+- name: Install python3, pip, venv, ansible
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+  - python3-pip
+  - python3-venv
+  - ansible
+  tags:
+    - apt
+- name: git clone ansible container
+  git:
+    repo: https://github.com/ansible/ansible-container.git
+    dest: /workspace/ansible-container
+  tags:
+    - ansible-container
+- name: Install ansible container
+  shell: |
+    unset PYTHONPATH &&
+    python3 -m venv ~/python3-venv/ansible &&
+    source ~/python3-venv/ansible/bin/activate &&
+    pip3 install --upgrade pip &&
+    cd /workspace/ansible-container &&
+    pip3 install -e .[docker]
+  args:
+    executable: /bin/bash
+  tags:
+    - ansible-container

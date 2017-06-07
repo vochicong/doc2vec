@@ -1,0 +1,29 @@
+- name: Install python3 pip and venv
+  shell: |
+    unset PYTHONPATH &&
+    apt update &&
+    apt install -y python3-pip python3-venv
+  # apt: name={{item}} state=installed
+  # with_items:
+  # - python3-pip
+  # - python3-venv
+  tags:
+    - apt
+    - python3
+- name: Create venv
+  shell: |
+    unset PYTHONPATH &&
+    python3 -m venv /workspace/python3-venv &&
+    source /workspace/python3-venv/bin/activate &&\
+    pip3 install --upgrade pip
+  args:
+    executable: /bin/bash
+  tags:
+    - venv
+    - python3
+- name: apt clean
+  shell: apt clean && rm -rf /var/lib/apt/lists/* 
+  when: ansible_connection == 'docker'
+  tags:
+    - clean
+  

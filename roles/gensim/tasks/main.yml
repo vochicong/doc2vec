@@ -1,0 +1,9 @@
+- name: install Gensim
+  shell: |
+    unset PYTHONPATH &&
+    source /workspace/python3-venv/bin/activate &&
+    pip3 install gensim
+  args:
+    executable: /bin/bash
+  tags:
+    - gensim

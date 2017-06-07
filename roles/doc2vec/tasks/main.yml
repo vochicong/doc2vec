@@ -1,0 +1,29 @@
+- name: mkdir -p /workspace/download/
+  file:
+    path: /workspace/download/
+    state: directory
+    mode: 0777
+  when: ansible_connection == 'docker'
+- name: apt install g++ and libs
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+    - g++
+    - google-perftools
+    - libboost-dev
+    - zlib1g-dev
+  tags:
+    - apt
+    - gcc
+- name: apt install dev utils
+  apt: name={{item}} state=installed
+  with_items:
+    - vim
+    - nkf
+    - wget
+    - git
+  tags:
+    - apt
+    - dev-utils
+- name: apt clean
+  shell: apt clean && rm -rf /var/lib/apt/lists/* 
+  when: ansible_connection == 'docker'

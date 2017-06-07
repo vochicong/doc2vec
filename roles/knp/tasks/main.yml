@@ -1,0 +1,13 @@
+- name: Install KNP
+  shell: |
+    # Use curl and rm to save disk space and docker size
+    curl -SL http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.17.tar.bz2 | tar xvjC /workspace
+    cd /workspace/knp-4.17 &&
+    ./configure &&
+    make &&
+    make install &&
+    rm -rf /workspace/knp-4.17 &&
+    ldconfig &&
+    echo "knpとjumanppを組み合わせる" | jumanpp | knp
+  tags:
+    - knp
