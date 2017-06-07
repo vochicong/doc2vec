@@ -27,7 +27,7 @@
 - MeCab
 - JUMAN, JUMAN++, KNP
 - fastText
- 
+
 ## git clone
 
     git clone git@github.com:vochicong/doc2vec.git
@@ -79,7 +79,7 @@ Dockerではなく、VM(Ubuntu 16.04想定)に環境をインストールする�
 ### 必要なもの
 
 - ansible
- 
+
 ### 実行
 
     ansible-playbook ansible-playbook.yml

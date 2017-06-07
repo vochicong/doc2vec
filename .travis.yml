@@ -1,0 +1,27 @@
+language: python
+python:
+  - "3.5"
+
+services:
+  - docker
+
+before_script:
+  - sudo apt-get update
+  - sudo apt-get -y python3-pip python3-venv
+  - unset PYTHONPATH &&
+    python3 -m venv /workspace/python3-venv &&
+    source /workspace/python3-venv/bin/activate &&
+    pip3 install --upgrade pip &&
+    git clone https://github.com/ansible/ansible-container.git /workspace/ansible-container &&
+    cd /workspace/ansible-container &&
+    pip3 install -e .[docker]
+
+script:
+  - unset PYTHONPATH &&
+    source /workspace/python3-venv/bin/activate &&
+    ansible-container build &&
+    docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
+
+after_script:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push vochicong/nlp-doc2vec:latest
