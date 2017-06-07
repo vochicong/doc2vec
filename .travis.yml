@@ -1,13 +1,18 @@
 language: python
 python:
   - "3.5"
-install: "pip3 install -r requirements.txt"
+install: 
+  - python3 -m venv ~/python3-venv/ansible &&
+    source ~/python3-venv/ansible/bin/activate &&
+    pip3 install -U pip &&
+    pip3 install -r requirements.txt
 
 services:
   - docker
 
 script:
-  - ansible-container build &&
+  - source ~/python3-venv/ansible/bin/activate &&
+    ansible-container build &&
     docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
 
 after_script:

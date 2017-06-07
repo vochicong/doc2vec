@@ -17,7 +17,7 @@
     unset PYTHONPATH &&
     python3 -m venv ~/python3-venv/ansible &&
     source ~/python3-venv/ansible/bin/activate &&
-    pip3 install --upgrade pip &&
+    pip3 install -U pip &&
     cd /workspace/ansible-container &&
     pip3 install -e .[docker]
   args:
