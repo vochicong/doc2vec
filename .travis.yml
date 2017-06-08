@@ -23,8 +23,9 @@ install:
     ansible-container version
 
 script:
+  # Docker build take a long time (travis_wait)
   - source ~/python3-venv/ansible/bin/activate &&
-    ansible-container build
+    travis_wait 60 ansible-container build
   - docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
 
 after_success:
@@ -37,4 +38,4 @@ notifications:
       - NOTIFY_WEBHOOK_URL
     on_success: change
     on_failure: always
-    on_start: never     # options: [always|never|change] 
+    on_start: never     # options: [always|never|change]
