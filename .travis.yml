@@ -1,27 +1,41 @@
 language: python
+dist: trusty
+sudo: required
 python:
   - "3.5"
 
 services:
   - docker
 
-before_script:
-  - sudo apt-get update
-  - sudo apt-get -y python3-pip python3-venv
-  - unset PYTHONPATH &&
-    python3 -m venv /workspace/python3-venv &&
-    source /workspace/python3-venv/bin/activate &&
-    pip3 install --upgrade pip &&
-    git clone https://github.com/ansible/ansible-container.git /workspace/ansible-container &&
-    cd /workspace/ansible-container &&
-    pip3 install -e .[docker]
+# Need to install ansible from apt,
+# but ansible-container from GitHub
+install:
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports universe'
+  - sudo apt update -qq
+  - sudo apt install -y ansible
+  - ansible --version
+  - git clone https://github.com/ansible/ansible-container.git ~/workspace/ansible-container
+  - python3 -m venv ~/python3-venv/ansible
+  - source ~/python3-venv/ansible/bin/activate &&
+    pip3 install -U pip &&
+    pip3 install -r requirements.txt &&
+    pip3 install -e ~/workspace/ansible-container[docker] &&
+    ansible-container version
 
 script:
-  - unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
-    ansible-container build &&
-    docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
+  # Docker build take a long time (travis_wait)
+  - source ~/python3-venv/ansible/bin/activate &&
+    travis_wait 120 ansible-container build
+  - docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
 
-after_script:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+after_success:
+  - docker login -u vochicong -p "$DOCKER_PASSWORD";
     docker push vochicong/nlp-doc2vec:latest
+
+notifications:
+  webhooks:
+    urls:
+      - NOTIFY_WEBHOOK_URL
+    on_success: change
+    on_failure: always
+    on_start: never     # options: [always|never|change]
