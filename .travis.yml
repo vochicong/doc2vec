@@ -12,11 +12,14 @@ before_install:
   - sudo apt-get update -qq
 
 install: 
+  # Need to install ansible-container from GitHub
+  - git clone https://github.com/ansible/ansible-container.git ~/workspace/ansible-container
   - python3 -m venv ~/python3-venv/ansible &&
     source ~/python3-venv/ansible/bin/activate &&
     pip3 install -U pip &&
     pip3 install -r requirements.txt &&
     ansible --version &&
+    pip3 install -e ~/workspace/ansible-container[docker] &&
     ansible-container version
 
 script:
