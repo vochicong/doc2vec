@@ -3,15 +3,15 @@ dist: trusty
 sudo: required
 python:
   - "3.5"
-  
+
 services:
   - docker
-  
-# Need to install ansible from apt, 
+
+# Need to install ansible from apt,
 # but ansible-container from GitHub
-install: 
+install:
   - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports universe'
-  - sudo apt-update -qq
+  - sudo apt update -qq
   - sudo apt install -y ansible
   - ansible --version
   - git clone https://github.com/ansible/ansible-container.git ~/workspace/ansible-container
@@ -30,4 +30,3 @@ script:
 after_success:
   - docker login -u vochicong -p "$DOCKER_PASSWORD";
     docker push vochicong/nlp-doc2vec:latest
-    
