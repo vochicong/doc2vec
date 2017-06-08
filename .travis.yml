@@ -1,20 +1,30 @@
 language: python
+dist: trusty
+sudo: required
 python:
   - "3.5"
+  
+services:
+  - docker
+  
+before_install:
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports universe'
+  - sudo apt-get update -qq
+
 install: 
   - python3 -m venv ~/python3-venv/ansible &&
     source ~/python3-venv/ansible/bin/activate &&
     pip3 install -U pip &&
-    pip3 install -r requirements.txt
-
-services:
-  - docker
+    pip3 install -r requirements.txt &&
+    ansible --version &&
+    ansible-container version
 
 script:
   - source ~/python3-venv/ansible/bin/activate &&
-    ansible-container build &&
-    docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
+    ansible-container build
+  - docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
 
-after_script:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+after_success:
+  - docker login -u vochicong -p "$DOCKER_PASSWORD";
     docker push vochicong/nlp-doc2vec:latest
+    

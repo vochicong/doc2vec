@@ -1,13 +1,21 @@
 ## The following requirements were added by pip freeze:
--e git+https://github.com/ansible/ansible-container.git@756fecc56bb89e3aae5d640be4f2a8f6e5e583b4#egg=ansible_container
+ansible==2.3.1.0
+-e git+https://github.com/ansible/ansible-container.git@d9b578dfe87fb798397f09c4fa3b0dc5dbcf3310#egg=ansible_container
+asn1crypto==0.22.0
 certifi==2017.4.17
+cffi==1.10.0
 chardet==3.0.3
 colorama==0.3.9
+cryptography==1.9
 docker==2.3.0
 docker-pycreds==0.2.1
 idna==2.5
 Jinja2==2.9.6
 MarkupSafe==1.0
+paramiko==2.1.2
+pyasn1==0.2.3
+pycparser==2.17
+pycrypto==2.6.1
 PyYAML==3.12
 requests==2.17.3
 ruamel.yaml==0.15.0
