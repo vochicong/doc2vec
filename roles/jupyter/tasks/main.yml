@@ -1,7 +1,7 @@
 - name: Install Jupyter
   shell: |
     unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
+    source /workspace/venv/nlp/bin/activate &&
     pip3 install six simplegeneric jupyter 
   args:
     executable: /bin/bash

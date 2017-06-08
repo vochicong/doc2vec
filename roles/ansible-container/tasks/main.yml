@@ -15,8 +15,8 @@
 - name: Install ansible container
   shell: |
     unset PYTHONPATH &&
-    python3 -m venv ~/python3-venv/ansible &&
-    source ~/python3-venv/ansible/bin/activate &&
+    python3 -m venv /workspace/venv/ansible &&
+    source /workspace/venv/ansible/bin/activate &&
     pip3 install -U pip &&
     pip3 install -e /workspace/ansible-container[docker]
   args:

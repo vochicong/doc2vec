@@ -11,7 +11,7 @@
 - name: Install MeCab
   shell: |
     unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
+    source /workspace/venv/nlp/bin/activate &&
     pip3 install mecab-python3
   args:
     executable: /bin/bash

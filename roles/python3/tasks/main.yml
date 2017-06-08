@@ -13,8 +13,8 @@
 - name: Create venv
   shell: |
     unset PYTHONPATH &&
-    python3 -m venv /workspace/python3-venv &&
-    source /workspace/python3-venv/bin/activate &&\
+    python3 -m venv /workspace/venv/nlp &&
+    source /workspace/venv/nlp/bin/activate &&\
     pip3 install --upgrade pip
   args:
     executable: /bin/bash
