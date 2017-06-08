@@ -30,3 +30,11 @@ script:
 after_success:
   - docker login -u vochicong -p "$DOCKER_PASSWORD";
     docker push vochicong/nlp-doc2vec:latest
+
+notifications:
+  webhooks:
+    urls:
+      - NOTIFY_WEBHOOK_URL
+    on_success: change
+    on_failure: always
+    on_start: never     # options: [always|never|change] 
