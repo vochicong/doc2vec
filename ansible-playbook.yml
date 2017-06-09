@@ -7,7 +7,6 @@
       - ansible-container
       - apt-utils
       # - dumb-init
-      - download
       - doc2vec
       - python3
       - jupyter

@@ -1,13 +1,21 @@
+# Use curl and rm to save disk space and docker size
+- name: Download PYKNP
+  command: curl -SL http://lotus.kuee.kyoto-u.ac.jp/nl-resource/pyknp/pyknp-0.3.tar.gz | tar xzC /workspace
+  tags:
+    - pyknp
+    - download
 - name: Install PYKNP
   shell: |
-    # Use curl and rm to save disk space and docker size
-    curl -SL http://lotus.kuee.kyoto-u.ac.jp/nl-resource/pyknp/pyknp-0.3.tar.gz | tar xvzC /workspace &&
     unset PYTHONPATH &&
     source /workspace/venv/nlp/bin/activate &&
     cd /workspace/pyknp-0.3 &&
-    python3 setup.py install &&
-    rm -rf /workspace/pyknp-0.3
+    python3 setup.py install
   args:
     executable: /bin/bash
   tags:
     - pyknp
+- name: Clean PYKNP
+  command: rm -rf /workspace/pyknp-0.3
+  tags:
+    - pyknp
+    - clean

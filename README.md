@@ -82,4 +82,17 @@ Dockerではなく、VM(Ubuntu 16.04想定)に環境をインストールする�
 
 ### 実行
 
-    ansible-playbook ansible-playbook.yml
+初回、データダウンロードを含めて実行
+
+    sudo mkdir -p /workspace/download
+    sudo chown -R `whoami` /workspace
+    ansible-playbook ansible-playbook.yml  --skip-tags="clean"
+
+2回目以降は、データダウンロードが不要
+
+    ansible-playbook ansible-playbook.yml  --skip-tags="download,clean"
+
+ダウロードしたデータを削除する場合
+
+    ansible-playbook ansible-playbook.yml  --tags="clean"
+    rm -Rf /workspace/download/*

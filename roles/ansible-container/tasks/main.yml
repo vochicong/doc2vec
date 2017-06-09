@@ -12,6 +12,7 @@
     dest: /workspace/ansible-container
   tags:
     - ansible-container
+    - download
 - name: Install ansible container
   shell: |
     unset PYTHONPATH &&
