@@ -22,12 +22,16 @@
 - Ubuntu 16.04
 - vim, wget, git, nkf
 - g++
-- python3, pip, Cython
-- gensim (word2vec, doc2vec)
+- Python2, Python3, pip, Cython
+- gensim (word2vec, doc2vec), pattern
 - MeCab
 - JUMAN, JUMAN++, KNP
 - fastText
 
+注
+
+- Python3だとgensimがslow modeになり、patternはエラー
+ 
 ## git clone
 
     git clone git@github.com:vochicong/doc2vec.git

@@ -8,6 +8,7 @@
       - apt-utils
       # - dumb-init
       - doc2vec
+      - python2
       - python3
       - jupyter
       - gensim
@@ -17,4 +18,5 @@
       - juman
       - knp
       - pyknp
-      
+      - nltk
+

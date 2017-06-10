@@ -13,6 +13,8 @@
     unset PYTHONPATH &&
     source /workspace/venv/nlp/bin/activate &&
     pip3 install mecab-python3
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install mecab-python
   args:
     executable: /bin/bash
   tags:

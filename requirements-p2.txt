@@ -1,15 +1,19 @@
 ## The following requirements were added by pip freeze:
+backports-abc==0.5
+backports.shutil-get-terminal-size==1.0.0
 bleach==2.0.0
 boto==2.47.0
 bz2file==0.98
 certifi==2017.4.17
 chardet==3.0.3
+configparser==3.5.0
 Cython==0.25.2
 decorator==4.0.11
 entrypoints==0.2.2
+enum34==1.1.6
 fasttext==0.8.3
+functools32==3.2.3.post2
 future==0.16.0
-gensim==2.1.0
 google-compute-engine==2.3.7
 html5lib==0.999999999
 idna==2.5
@@ -23,6 +27,7 @@ jupyter-client==5.0.1
 jupyter-console==5.1.0
 jupyter-core==4.3.0
 MarkupSafe==1.0
+mecab-python==0.996
 mecab-python3==0.7
 mistune==0.7.4
 nbconvert==5.2.1
@@ -30,6 +35,7 @@ nbformat==4.3.0
 notebook==5.0.0
 numpy==1.13.0
 pandocfilters==1.4.1
+pathlib2==2.2.1
 pexpect==4.2.1
 pickleshare==0.7.4
 prompt-toolkit==1.0.14
@@ -39,8 +45,10 @@ python-dateutil==2.6.0
 pyzmq==16.0.2
 qtconsole==4.3.0
 requests==2.17.3
+scandir==1.5
 scipy==0.19.0
 simplegeneric==0.8.1
+singledispatch==3.4.0.3
 six==1.10.0
 smart-open==1.5.3
 terminado==0.6

@@ -10,10 +10,13 @@
     source /workspace/venv/nlp/bin/activate &&
     cd /workspace/pyknp-0.3 &&
     python3 setup.py install
+    source /workspace/venv/nlp-p2/bin/activate &&
+    python setup.py install
   args:
     executable: /bin/bash
   tags:
     - pyknp
+    - pip
 - name: Clean PYKNP
   command: rm -rf /workspace/pyknp-0.3
   tags:

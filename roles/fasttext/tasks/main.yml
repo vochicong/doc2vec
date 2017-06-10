@@ -10,7 +10,11 @@
     rm -rf /workspace/fastText &&
     pip3 install Cython &&
     pip3 install fasttext
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install Cython &&
+    pip install fasttext
   args:
     executable: /bin/bash
   tags:
     - fasttext
+    - pip
