@@ -31,7 +31,7 @@
 注
 
 - Python3だとgensimがslow modeになり、patternはエラー
- 
+
 ## git clone
 
     git clone git@github.com:vochicong/doc2vec.git
@@ -59,12 +59,13 @@ Docker内でコマンドを打つなら
 
     docker-compose exec nlp-doc2vec bash
 
-## Build Docker image
+## Build Docker image using ansible-container
 
-手元でBuild Docker imageする。
+手元でansible-containerを使ってDocker imageをbuildする。
 
 ### 必要なもの
 
+- docker, docker-compose
 - ansible-container
 
 ### 実行
@@ -75,6 +76,21 @@ buildして[vochicong/nlp-doc2vec](https://hub.docker.com/r/vochicong/nlp-doc2ve
     docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
     ansible-container push --push-to docker
     docker push vochicong/nlp-doc2vec:latest # push tag latest
+
+## Build Docker image using docker-compose
+
+手元でdocker-composeを使ってDocker imageをbuildする。
+
+### 必要なもの
+
+- docker, docker-compose
+
+### 実行
+
+buildして[vochicong/nlp-doc2vec](https://hub.docker.com/r/vochicong/nlp-doc2vec/)へpush
+
+    docker-compose build
+    docker-compose push
 
 ## VMにインストール
 

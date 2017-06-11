@@ -4,8 +4,10 @@
   - python3-pip
   - python3-venv
   - ansible
+  - git
   tags:
     - apt
+    - ansible-container
 - name: git clone ansible container
   git:
     repo: https://github.com/ansible/ansible-container.git
