@@ -3,7 +3,6 @@
     path: /workspace/download/
     state: directory
     mode: 0777
-  when: ansible_connection == 'docker'
 - name: apt install g++ and libs
   apt: name={{item}} state=installed update_cache=true
   with_items:
@@ -14,6 +13,7 @@
   tags:
     - apt
     - gcc
+    - doc2vec
 - name: apt install dev utils
   apt: name={{item}} state=installed
   with_items:
@@ -24,6 +24,9 @@
   tags:
     - apt
     - dev-utils
+    - doc2vec
 - name: apt clean
-  shell: apt clean && rm -rf /var/lib/apt/lists/* 
-  when: ansible_connection == 'docker'
+  shell: apt clean && rm -rf /var/lib/apt/lists/*
+  tags:
+    - clean
+    - doc2vec

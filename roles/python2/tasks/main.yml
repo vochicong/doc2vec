@@ -1,10 +1,10 @@
-# Python2 is needed for some pip packages like 
+# Python2 is needed for some pip packages like
 # pattern, fast version of gensim
 - name: Install python2 pip and venv
-  apt: name={{item}} state=installed
+  apt: name={{item}} state=installed update_cache=yes
   with_items:
-  - python-pip
-  - python-virtualenv
+    - python-pip
+    - python-virtualenv
   tags:
     - apt
     - python2
@@ -20,8 +20,7 @@
     - python2
     - pip
 - name: apt clean
-  shell: apt clean && rm -rf /var/lib/apt/lists/* 
-  when: ansible_connection == 'docker'
+  shell: apt clean && rm -rf /var/lib/apt/lists/*
   tags:
     - clean
-  
+    - python2

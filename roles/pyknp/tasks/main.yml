@@ -1,6 +1,6 @@
 # Use curl and rm to save disk space and docker size
 - name: Download PYKNP
-  command: curl -SL http://lotus.kuee.kyoto-u.ac.jp/nl-resource/pyknp/pyknp-0.3.tar.gz | tar xzC /workspace
+  shell: curl -SL http://lotus.kuee.kyoto-u.ac.jp/nl-resource/pyknp/pyknp-0.3.tar.gz | tar xzC /workspace
   tags:
     - pyknp
     - download
