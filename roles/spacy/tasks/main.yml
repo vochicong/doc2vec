@@ -1,0 +1,12 @@
+- name: install spaCy
+  shell: |
+    unset PYTHONPATH &&
+    source /workspace/venv/nlp/bin/activate &&
+    pip3 install spacy
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install spacy
+  args:
+    executable: /bin/bash
+  tags:
+    - spacy
+    - pip
