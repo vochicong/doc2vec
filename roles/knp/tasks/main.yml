@@ -1,6 +1,6 @@
 # Use curl and rm to save disk space and docker size
 - name: Download KNP
-  command: curl -SL http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.17.tar.bz2 | tar xjC /workspace
+  shell: curl -SL http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.17.tar.bz2 | tar xjC /workspace
   tags:
     - knp
     - download
