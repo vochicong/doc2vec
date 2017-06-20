@@ -1,12 +1,12 @@
-- name: Install Jupyter
+- name: install spaCy
   shell: |
     unset PYTHONPATH &&
     source /workspace/venv/nlp/bin/activate &&
-    pip3 install six simplegeneric 
+    pip3 install spacy
     source /workspace/venv/nlp-p2/bin/activate &&
-    pip install six simplegeneric 
+    pip install spacy
   args:
     executable: /bin/bash
   tags:
+    - spacy
     - pip
-    - jupyter

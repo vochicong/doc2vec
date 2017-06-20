@@ -1,26 +1,29 @@
-- name: apt install MeCab
+- name: apt install MeCab, mecab-config, ipadic
   apt: name={{item}} state=installed update_cache=true
   with_items:
-    - mecab 
+    - mecab
     - libmecab-dev
-    - mecab-ipadic 
+    - mecab-ipadic
     - mecab-ipadic-utf8
   tags:
     - apt
     - download
+    - mecab
 - name: Install MeCab
   shell: |
     unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
-    pip3 install mecab-python3
+    dpkg-query -L libmecab-dev &&
+    source /workspace/venv/nlp/bin/activate &&
+    pip3 install mecab-python3 &&
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install mecab-python
   args:
     executable: /bin/bash
   tags:
     - pip
     - mecab
 - name: apt clean
-  shell: apt clean && rm -rf /var/lib/apt/lists/* 
-  when: ansible_connection == 'docker'
+  shell: apt clean && rm -rf /var/lib/apt/lists/*
   tags:
     - clean
-    
+    - mecab

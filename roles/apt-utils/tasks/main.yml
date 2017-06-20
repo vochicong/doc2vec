@@ -7,5 +7,7 @@
     - apt
     - download
 - name: apt clean
-  shell: apt clean && rm -rf /var/lib/apt/lists/* 
-  when: ansible_connection == 'docker'
+  shell: apt clean && rm -rf /var/lib/apt/lists/*
+  tags:
+    - clean
+    - apt-utils

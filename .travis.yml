@@ -23,9 +23,13 @@ install:
     ansible-container version
 
 script:
-  # Docker build take a long time (travis_wait)
+  # Docker build take a long time while downloading KNP. 
+  # To make it worse, ansible doesn't show debug log 
+  # before the task finishes. For now TravisCI will
+  # kill the build process after waiting for a while when
+  # ansible download KNP. There is no way to help :(
   - source ~/python3-venv/ansible/bin/activate &&
-    travis_wait 60 ansible-container build
+    ansible-container build
   - docker tag nlp-doc2vec:latest vochicong/nlp-doc2vec:latest
 
 after_success:

@@ -1,12 +1,12 @@
-- name: Install Jupyter
+- name: install NLTK
   shell: |
     unset PYTHONPATH &&
     source /workspace/venv/nlp/bin/activate &&
-    pip3 install six simplegeneric 
+    pip3 install nltk
     source /workspace/venv/nlp-p2/bin/activate &&
-    pip install six simplegeneric 
+    pip install nltk
   args:
     executable: /bin/bash
   tags:
+    - nltk
     - pip
-    - jupyter

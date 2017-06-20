@@ -22,11 +22,15 @@
 - Ubuntu 16.04
 - vim, wget, git, nkf
 - g++
-- python3, pip, Cython
-- gensim (word2vec, doc2vec)
+- Python2, Python3, pip, Cython
+- gensim (word2vec, doc2vec), pattern
 - MeCab
 - JUMAN, JUMAN++, KNP
 - fastText
+
+注
+
+- Python3だとgensimがslow modeになり、patternはエラー
 
 ## git clone
 
@@ -55,12 +59,13 @@ Docker内でコマンドを打つなら
 
     docker-compose exec nlp-doc2vec bash
 
-## Build Docker image
+## Build Docker image using ansible-container
 
-手元でBuild Docker imageする。
+手元でansible-containerを使ってDocker imageをbuildする。
 
 ### 必要なもの
 
+- docker, docker-compose
 - ansible-container
 
 ### 実行
@@ -72,6 +77,21 @@ buildして[vochicong/nlp-doc2vec](https://hub.docker.com/r/vochicong/nlp-doc2ve
     ansible-container push --push-to docker
     docker push vochicong/nlp-doc2vec:latest # push tag latest
 
+## Build Docker image using docker-compose
+
+手元でdocker-composeを使ってDocker imageをbuildする。
+
+### 必要なもの
+
+- docker, docker-compose
+
+### 実行
+
+buildして[vochicong/nlp-doc2vec](https://hub.docker.com/r/vochicong/nlp-doc2vec/)へpush
+
+    docker-compose build
+    docker-compose push
+
 ## VMにインストール
 
 Dockerではなく、VM(Ubuntu 16.04想定)に環境をインストールする。
@@ -82,4 +102,17 @@ Dockerではなく、VM(Ubuntu 16.04想定)に環境をインストールする�
 
 ### 実行
 
-    ansible-playbook ansible-playbook.yml
+初回、データダウンロードを含めて実行
+
+    sudo mkdir -p /workspace/download
+    sudo chown -R `whoami` /workspace
+    ansible-playbook ansible-playbook.yml  --skip-tags="clean"
+
+2回目以降は、データダウンロードが不要
+
+    ansible-playbook ansible-playbook.yml  --skip-tags="download,clean"
+
+ダウロードしたデータを削除する場合
+
+    ansible-playbook ansible-playbook.yml  --tags="clean"
+    rm -Rf /workspace/download/*

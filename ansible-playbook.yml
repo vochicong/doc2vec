@@ -7,8 +7,8 @@
       - ansible-container
       - apt-utils
       # - dumb-init
-      - download
       - doc2vec
+      - python2
       - python3
       - jupyter
       - gensim
@@ -18,4 +18,6 @@
       - juman
       - knp
       - pyknp
-      
+      - nltk
+      - spacy
+

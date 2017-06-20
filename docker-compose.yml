@@ -2,13 +2,15 @@ version: '2'
 services:
   nlp-doc2vec:
     image: vochicong/nlp-doc2vec
+    build: .
     volumes:
-      - ./jupyter-config:/root/.jupyter
+      - ./conf/jupyter-config:/root/.jupyter
+      - ./conf/letsencrypt:/conf/letsencrypt
       - ./notebooks:/workspace/notebooks
     ports:
       - "443:8888" # For Jupyter
     working_dir: /workspace
-    command: 
+    command:
       - bash
       - -c
-      - source .env/bin/activate && jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --notebook-dir /workspace/notebooks
+      - source /workspace/venv/nlp/bin/activate && jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --notebook-dir /workspace/notebooks

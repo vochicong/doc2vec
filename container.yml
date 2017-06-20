@@ -17,6 +17,7 @@ services:
       - juman
       - knp
       - pyknp
+      - nltk
     # image: vochicong/nlp-doc2vec
     volumes:
       - $PWD/jupyter-config:/root/.jupyter
@@ -25,14 +26,13 @@ services:
       - "443:8888" # For Jupyter
     working_dir: /workspace
     # entrypoint: ["/usr/bin/dumb-init", "--"]
-    entrypoint: 
+    entrypoint:
       - /bin/bash
       - -c
-      - source /workspace/python3-venv/bin/activate && exec jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
+      - source /workspace/venv/nlp/bin/activate && exec jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
     # --notebook-dir /workspace/notebooks
 registries:
   docker:
     url: https://docker.io/
     namespace: vochicong
     repository_prefix: nlp
-    

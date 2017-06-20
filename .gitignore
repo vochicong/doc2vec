@@ -1,5 +1,6 @@
 /.env/
-/jupyter-config/
+/conf/
+private*
 /notebooks/.ipynb_checkpoints/
 /notebooks/models/
 /notebooks/corpora/

@@ -1,14 +1,20 @@
 - name: Install fastText, Cython
   shell: |
     unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
+    source /workspace/venv/nlp/bin/activate &&
     cd /workspace &&
     git clone https://github.com/facebookresearch/fastText.git &&
     make -C /workspace/fastText &&
+    mkdir -p /workspace/bin/ &&
+    cp /workspace/fastText/fasttext /workspace/bin/ &&
     rm -rf /workspace/fastText &&
     pip3 install Cython &&
     pip3 install fasttext
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install Cython &&
+    pip install fasttext
   args:
     executable: /bin/bash
   tags:
     - fasttext
+    - pip

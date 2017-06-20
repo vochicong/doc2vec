@@ -1,9 +1,25 @@
+- name: apt install python3-dev to make gensim faster
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+    - python3-dev
+  tags:
+    - apt
+    - gensim
+# Note that pattern doesn't work with Python3
 - name: install Gensim
   shell: |
     unset PYTHONPATH &&
-    source /workspace/python3-venv/bin/activate &&
-    pip3 install gensim
+    source /workspace/venv/nlp/bin/activate &&
+    pip3 install Cython boto google-compute-engine pattern gensim
+    source /workspace/venv/nlp-p2/bin/activate &&
+    pip install Cython boto google-compute-engine pattern gensim
   args:
     executable: /bin/bash
   tags:
+    - gensim
+    - pip
+- name: apt clean
+  shell: apt clean && rm -rf /var/lib/apt/lists/*
+  tags:
+    - clean
     - gensim
